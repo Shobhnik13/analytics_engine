@@ -8,17 +8,18 @@ export class ClickhouseService implements OnModuleInit {
 
     constructor() {
         // Initialize ClickHouse client configurations
-        const host = process.env.CLICKHOUSE_HOST || 'http://localhost';
-        const port = process.env.CLICKHOUSE_PORT || '8123';
-        const base = host.includes('://') ? host : `http://${host}`;
+        const url = `${process.env.CLICKHOUSE_HOST || "http://localhost"}:${process.env.CLICKHOUSE_PORT || "8123"}`;
+        const username = process.env.CLICKHOUSE_USER || "default";
+        const password = process.env.CLICKHOUSE_PASSWORD || "insightpass";
+        const database = process.env.CLICKHOUSE_DB || "insightplus";
 
         // setting up singleton client instance
         this.client = createClient({
-            host: `${base}:${port}`,
-            username: process.env.CLICKHOUSE_USER || 'default',
-            password: process.env.CLICKHOUSE_PASSWORD || '',
-            database: process.env.CLICKHOUSE_DB || 'insightplus'
-        })
+            url,
+            username,
+            password,
+            database,
+        });
     }
 
     async onModuleInit() {

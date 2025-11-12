@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   redis:
     image: redis:7
@@ -10,7 +12,9 @@ services:
     image: clickhouse/clickhouse-server:latest
     container_name: insightplus-clickhouse
     environment:
-      - CLICKHOUSE_DB=insightplus
+      CLICKHOUSE_DB: insightplus
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: insightpass
     ports:
       - "8123:8123"
       - "9000:9000"
@@ -22,34 +26,11 @@ services:
     image: postgres:16
     container_name: insightplus-postgres
     environment:
-      - POSTGRES_DB=insightplus
-      - POSTGRES_USER=insightuser
-      - POSTGRES_PASSWORD=insightpass
+      POSTGRES_DB: insightplus
+      POSTGRES_USER: insightuser
+      POSTGRES_PASSWORD: insightpass
     ports:
       - "5432:5432"
     volumes:
       - ./pg_data:/var/lib/postgresql/data
     restart: unless-stopped
-
-  # backend:
-  #   build: .
-  #   container_name: insightplus-backend
-  #   env_file: .env
-  #   ports:
-  #     - "7002:7002"
-  #   depends_on:
-  #     - redis
-  #     - clickhouse
-  #     - postgres
-  #   restart: unless-stopped
-
-  # worker:
-  #   build: .
-  #   container_name: insightplus-worker
-  #   env_file: .env
-  #   command: ["node", "worker/index.js"]
-  #   depends_on:
-  #     - redis
-  #     - clickhouse
-  #     - postgres
-  #   restart: unless-stopped
