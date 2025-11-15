@@ -12,6 +12,8 @@ async function bootstrap() {
 
   app.use(helmet())
   app.enableCors()
+  app.setGlobalPrefix('api')
+  // app.useGlobalPipes()
 
   const PORT = parseInt(process.env.PORT || "7002", 10)
   await app.listen(PORT)
