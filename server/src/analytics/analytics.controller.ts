@@ -21,27 +21,27 @@ export class AnalyticsController {
         return this.analyticsService.getMonthlyActiveUsesrs()
     }
 
-    @Get('/total-users')
+    @Get('total-users')
     async getTotalUsers() {
         return this.analyticsService.getTotalUsers()
     }
 
-    @Get('/total-events')
+    @Get('total-events')
     async getTotalEvents() {
         return this.analyticsService.getTotalEvents()
     }
 
-    @Get('/most-used-feature')
+    @Get('most-used-feature')
     async getMostUsedFeature() {
         return this.analyticsService.mostUsedFeatures()
     }
 
-    @Get('/conversion-funnel')
+    @Get('conversion-funnel')
     async getConversionFunnel() {
         return this.analyticsService.getConversionFunnel()
     }
 
-    @Get('/most-active-users')
+    @Get('most-active-users')
     async getMostActiveUsers() {
         return this.analyticsService.getMostActiveUsers()
     }
