@@ -17,7 +17,7 @@ export class AnalyticsController {
     }
 
     @Get('mau')
-    async getMauAnalytics() {
+    async getMauAnalytics() { 
         return this.analyticsService.getMonthlyActiveUsesrs()
     }
 
