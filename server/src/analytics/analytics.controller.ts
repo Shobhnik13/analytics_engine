@@ -14,7 +14,7 @@ export class AnalyticsController {
     async getDauAnalytics(@Query('days') days?: string) {
         const d = days ? parseInt(days, 10) : 30
         return this.analyticsService.dailyAciveUsers(d)
-    }
+    } 
 
     @Get('mau')
     async getMauAnalytics() {
