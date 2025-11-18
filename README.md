@@ -70,7 +70,7 @@ export const validEvents = [
 
 **Now the /api/v1/capture endpoint will accept these events**
 
-# B) Customize or Add Analytics Queries
+# C) Customize or Add Analytics Queries
 All SQL analytics queries/logic lives inside:    
 **src/analytics/analytics.service.ts**
 
