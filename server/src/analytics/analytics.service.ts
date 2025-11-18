@@ -122,7 +122,7 @@ export class AnalyticsService {
   async getTotalUsers() {
     return this.runQuery(
       `SELECT COUNT(DISTINCT distinct_id) AS total_users FROM events;`,
-      `SELECT uniqEoxact(distinct_id) AS total_users FROM events;`
+      `SELECT uniqExact(distinct_id) AS total_users FROM events;`
     );
   }
 

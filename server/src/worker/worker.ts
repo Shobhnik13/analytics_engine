@@ -20,7 +20,7 @@ export async function startWorker(db: any) {
 
     logger.info(`[INFO] Worker started ${consumerName} on stream ${streamKey}`);
 
-    try {
+    try { 
         await redis.xgroup('CREATE', streamKey, groupName, '$', 'MKSTREAM');
     } catch (err: any) {
         if (!err.message.includes('BUSYGROUP')) {
@@ -74,7 +74,7 @@ export async function startWorker(db: any) {
                             event: event.event,
                             distinct_id: event.distinct_id,
                             properties: event.properties,
-                            event_timestamp: process.env.DB_TYPE === "clickhouse"
+                            event_timestamp: process.env.DATABASE_TYPE === "clickhouse"
                                 ? event.event_timestamp.replace("T", " ").replace("Z", "")
                                 : new Date(event.event_timestamp),
                             redisId: id,

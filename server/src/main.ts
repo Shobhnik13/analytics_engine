@@ -17,7 +17,7 @@ async function bootstrap() {
   app.use(helmet())
   app.enableCors()
   app.setGlobalPrefix('api/v1')
-  
+
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }))
 
   const dbService = app.get("ACTIVE_DB_SERVICE")
@@ -25,7 +25,7 @@ async function bootstrap() {
   const PORT = parseInt(process.env.PORT || "", 10)
   await app.listen(PORT)
   try {
-    await startWorker(dbService)
+    await startWorker(dbService)  
   } catch (err: any) {
     logger.error(`[WARN] WORKER INITIALIZATION FAILED`)
   }
